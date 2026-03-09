@@ -1,7 +1,6 @@
 // ============================================================
 //  MAA JEWELLERS — MongoDB Connection
 // ============================================================
-
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
@@ -10,7 +9,7 @@ const connectDB = async () => {
       useNewUrlParser:    true,
       useUnifiedTopology: true,
     });
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    console.log(`✅ MongoDB Connected`);
   } catch (error) {
     console.error(`❌ MongoDB Connection Error: ${error.message}`);
     process.exit(1);

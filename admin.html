@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maa Jewellers — Owner Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════
+     LOGIN PAGE
+════════════════════════════════════ -->
+<div id="loginPage" style="display:none;">
+  <div class="login-page">
+    <div class="login-pattern"></div>
+    <div class="login-card">
+      <!-- Corner decorations -->
+      <div class="corner-decoration tl"></div>
+      <div class="corner-decoration tr"></div>
+      <div class="corner-decoration bl"></div>
+      <div class="corner-decoration br"></div>
+
+      <div class="login-logo">
+        <h1>Maa Jewellers</h1>
+        <p>Owner Dashboard</p>
+      </div>
+
+      <div class="ornament-divider"><div class="ornament-icon">◆</div></div>
+      <div class="login-title">Secure Access Portal</div>
+
+      <div class="login-error" id="loginError"></div>
+
+      <form id="loginForm" autocomplete="off">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" placeholder="Enter your username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="toggle-password" id="togglePassword">👁</button>
+          </div>
+        </div>
+        <div style="margin-top:28px;">
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;font-size:0.85rem;padding:14px;">
+            Enter Dashboard
+          </button>
+        </div>
+      </form>
+
+      <p style="text-align:center;margin-top:20px;font-size:0.78rem;color:rgba(201,168,76,0.4);font-style:italic;">
+        This portal is for the owner of Maa Jewellers only.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     DASHBOARD PAGE
+════════════════════════════════════ -->
+<div id="dashboardPage" style="display:none;">
+
+  <!-- Sidebar Toggle (Mobile) -->
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ─── SIDEBAR ─────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Maa Jewellers</h2>
+      <p>Owner Dashboard</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Collections</div>
+
+      <button class="sidebar-link active" data-cat="all" onclick="switchAdminCategory('all')">
+        <span class="icon">💎</span> All Items
+        <span class="sidebar-count" id="countAll">0</span>
+      </button>
+
+      <button class="sidebar-link" data-cat="new-arrivals" onclick="switchAdminCategory('new-arrivals')">
+        <span class="icon">✨</span> New Arrivals
+        <span class="sidebar-count" id="count_new-arrivals">0</span>
+      </button>
+
+      <button class="sidebar-link" data-cat="most-trendy" onclick="switchAdminCategory('most-trendy')">
+        <span class="icon">🔥</span> Most Trendy
+        <span class="sidebar-count" id="count_most-trendy">0</span>
+      </button>
+
+      <button class="sidebar-link" data-cat="bridal-collection" onclick="switchAdminCategory('bridal-collection')">
+        <span class="icon">👑</span> Bridal Collection
+        <span class="sidebar-count" id="count_bridal-collection">0</span>
+      </button>
+
+      <button class="sidebar-link" data-cat="traditional" onclick="switchAdminCategory('traditional')">
+        <span class="icon">🌺</span> Traditional
+        <span class="sidebar-count" id="count_traditional">0</span>
+      </button>
+
+      <button class="sidebar-link" data-cat="daily-wear" onclick="switchAdminCategory('daily-wear')">
+        <span class="icon">💫</span> Daily Wear
+        <span class="sidebar-count" id="count_daily-wear">0</span>
+      </button>
+
+      <div class="sidebar-section-label" style="margin-top:12px;">Quick Actions</div>
+
+      <button class="sidebar-link" onclick="openAddModal()">
+        <span class="icon">➕</span> Add New Item
+      </button>
+
+      <button class="sidebar-link" onclick="goToCustomerView()">
+        <span class="icon">🌐</span> View Customer Page
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        🔓 Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN CONTENT ─────────────── -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div class="topbar-title" id="currentViewLabel">All Items</div>
+      <div class="topbar-actions">
+        <button class="btn btn-outline btn-sm" onclick="goToCustomerView()">🌐 Customer View</button>
+        <button class="btn btn-gold btn-sm" onclick="openAddModal()">➕ Add Jewellery</button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💎</div>
+          <div>
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">Total Items</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👑</div>
+          <div>
+            <div class="stat-value" id="statBridal">0</div>
+            <div class="stat-label">Bridal Pieces</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✨</div>
+          <div>
+            <div class="stat-value" id="statNewArrivals">0</div>
+            <div class="stat-label">New Arrivals</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div>
+            <div class="stat-value" id="statTrendy">0</div>
+            <div class="stat-label">Trending</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Heading -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:0.08em;color:var(--gold);">Jewellery Catalogue</h3>
+        <div class="ornament-divider" style="flex:1;max-width:200px;margin:0 20px;"><div class="ornament-icon" style="font-size:1rem;">◆</div></div>
+        <button class="btn btn-gold btn-sm" onclick="openAddModal()">➕ Add New Item</button>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <input type="search" id="adminSearch" placeholder="Search items..." style="flex:1;min-width:200px;max-width:340px;">
+        <span class="item-count-label" id="itemCountLabel">0 items</span>
+      </div>
+
+      <!-- Items Grid -->
+      <div class="jewel-grid" id="adminGrid">
+        <div class="spinner"></div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════
+     ADD / EDIT ITEM MODAL
+════════════════════════════════════ -->
+<div class="modal-overlay" id="itemModalOverlay">
+  <div class="modal-box" style="max-width:580px;">
+    <button class="modal-close" onclick="closeItemModal()">✕</button>
+    <h3 id="modalTitle" style="font-size:1.1rem;margin-bottom:8px;">Add New Jewellery Item</h3>
+    <div class="ornament-divider" style="margin-bottom:24px;"><div class="ornament-icon" style="font-size:1rem;">◆</div></div>
+
+    <form id="itemForm" autocomplete="off">
+
+      <!-- Image — Upload File OR Paste URL -->
+      <div class="form-group">
+        <label>Jewellery Image</label>
+
+        <!-- URL input (primary for full-stack — no server storage needed) -->
+        <input type="url" id="itemImageUrl" placeholder="Paste image URL (https://...)" style="margin-bottom:10px;">
+
+        <!-- OR file upload (stored as base64 in MongoDB) -->
+        <div class="image-upload-zone" id="uploadZone" style="margin-top:4px;">
+          <input type="file" id="itemImage" accept="image/*">
+          <div class="upload-icon" style="font-size:1.8rem;">📷</div>
+          <div class="upload-label">Or drag & drop / click to upload a file</div>
+          <div class="upload-hint">JPG, PNG, WEBP — Max 5MB (stored as base64)</div>
+        </div>
+
+        <div class="image-preview-wrap" id="imagePreviewWrap">
+          <img id="imagePreview" src="" alt="Preview">
+          <button type="button" class="image-preview-remove" id="removeImageBtn" title="Remove image">✕</button>
+        </div>
+      </div>
+
+      <!-- Item Name -->
+      <div class="form-group">
+        <label for="itemName">Item Name *</label>
+        <input type="text" id="itemName" placeholder="e.g. Kundan Bridal Necklace Set" required maxlength="120">
+      </div>
+
+      <!-- Category -->
+      <div class="form-group">
+        <label for="itemCategory">Category *</label>
+        <select id="itemCategory" required>
+          <option value="new-arrivals">✨ New Arrivals</option>
+          <option value="most-trendy">🔥 Most Trendy</option>
+          <option value="bridal-collection">👑 Bridal Collection</option>
+          <option value="traditional">🌺 Traditional Collection</option>
+          <option value="daily-wear">💫 Daily Wear</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="itemPrice">Price (Optional)</label>
+        <input type="text" id="itemPrice" placeholder="e.g. ₹45,000 or On Request" maxlength="60">
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="itemDesc">Description</label>
+        <textarea id="itemDesc" placeholder="Describe this jewellery piece — materials, craftsmanship, occasion..." maxlength="600"></textarea>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button type="button" class="btn btn-outline" onclick="closeItemModal()" style="flex:1;justify-content:center;">Cancel</button>
+        <button type="submit" class="btn btn-gold" id="saveItemBtn" style="flex:2;justify-content:center;">Save Item</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     DELETE CONFIRM MODAL
+════════════════════════════════════ -->
+<div class="modal-overlay" id="deleteModalOverlay">
+  <div class="modal-box" style="max-width:420px;text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:16px;">🗑️</div>
+    <h3 style="font-size:1.1rem;margin-bottom:12px;">Remove Item</h3>
+    <p style="color:rgba(253,246,227,0.7);margin-bottom:6px;font-size:1rem;">Are you sure you want to remove</p>
+    <p style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.9rem;margin-bottom:28px;" id="deleteItemName"></p>
+    <p style="color:rgba(253,246,227,0.5);font-size:0.85rem;font-style:italic;margin-bottom:28px;">This action cannot be undone.</p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <button class="btn btn-outline" onclick="closeDeleteModal()" style="flex:1;justify-content:center;">Cancel</button>
+      <button class="btn btn-danger" id="confirmDeleteBtn" style="flex:1;justify-content:center;">Yes, Remove</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SCRIPTS
+════════════════════════════════════ -->
+<script src="js/shared.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

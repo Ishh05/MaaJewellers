@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maa Jewellers — Exquisite Indian Royal Jewellery Collection. Browse our bridal, traditional, and contemporary jewellery.">
+  <title>Maa Jewellers — Royal Indian Jewellery</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/customer.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     TOAST CONTAINER
+════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span class="nav-logo-primary">Maa Jewellers</span>
+    <span class="nav-logo-sub">Est. Since Tradition</span>
+  </div>
+
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="#" onclick="switchNavCategory('all')" class="active">All Collections</a></li>
+    <li><a href="#" onclick="switchNavCategory('new-arrivals')">New Arrivals</a></li>
+    <li><a href="#" onclick="switchNavCategory('most-trendy')">Most Trendy</a></li>
+    <li><a href="#" onclick="switchNavCategory('bridal-collection')">Bridal</a></li>
+    <li><a href="#" onclick="switchNavCategory('traditional')">Traditional</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="wishlist-btn" id="openWishlist">
+      ♥ Wishlist <span class="wishlist-count" id="wishlistCount">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="switchNavCategory('all')">💎 All Collections</a>
+  <a href="#" onclick="switchNavCategory('new-arrivals')">✨ New Arrivals</a>
+  <a href="#" onclick="switchNavCategory('most-trendy')">🔥 Most Trendy</a>
+  <a href="#" onclick="switchNavCategory('bridal-collection')">👑 Bridal Collection</a>
+  <a href="#" onclick="switchNavCategory('traditional')">🌺 Traditional</a>
+  <a href="#" onclick="switchNavCategory('daily-wear')">💫 Daily Wear</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO SECTION
+════════════════════════════════════ -->
+<section class="hero" id="heroSection">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+
+  <!-- Floating decorative orbs -->
+  <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,26,26,0.25),transparent);top:-100px;right:-100px;pointer-events:none;"></div>
+  <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent);bottom:-80px;left:-80px;pointer-events:none;"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">◆ &nbsp; Est. Since Tradition &nbsp; ◆</div>
+
+    <h1>
+      <!--<span style="color:var(--gold-light);font-size:0.6em;letter-spacing:0.15em;font-family:'Cinzel',serif;">MAA</span>-->
+      <span>Maa Jewellers</span>
+      <span style="font-size:0.80em;color:var(--gold-light);">Collection</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Where every piece tells a story of heritage, artistry, and timeless elegance
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="scrollToCollection()">Explore Collection</button>
+      <button class="btn btn-outline" id="openWishlistHero" onclick="document.getElementById('wishlistPanel').classList.add('open')">♥ My Wishlist</button>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    Scroll to Discover
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     MARQUEE STRIP
+════════════════════════════════════ -->
+<div style="background:linear-gradient(90deg,var(--maroon-dark),var(--maroon),var(--maroon-dark));border-top:1px solid rgba(201,168,76,0.25);border-bottom:1px solid rgba(201,168,76,0.25);overflow:hidden;padding:12px 0;">
+  <div style="display:flex;gap:0;animation:marquee 25s linear infinite;width:max-content;align-items:center;">
+    <span style="white-space:nowrap;font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.2em;color:rgba(201,168,76,0.7);padding:0 32px;">✦ BRIDAL JEWELLERY &nbsp;&nbsp; ✦ TRADITIONAL GOLD &nbsp;&nbsp; ✦ KUNDAN SETS &nbsp;&nbsp; ✦ DIAMOND JEWELLERY &nbsp;&nbsp; ✦ POLKI COLLECTIONS &nbsp;&nbsp; ✦ FILIGREE WORK &nbsp;&nbsp; ✦ TEMPLE JEWELLERY &nbsp;&nbsp; ✦ EVERYDAY ELEGANCE &nbsp;&nbsp;</span>
+    <span style="white-space:nowrap;font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.2em;color:rgba(201,168,76,0.7);padding:0 32px;">✦ BRIDAL JEWELLERY &nbsp;&nbsp; ✦ TRADITIONAL GOLD &nbsp;&nbsp; ✦ KUNDAN SETS &nbsp;&nbsp; ✦ DIAMOND JEWELLERY &nbsp;&nbsp; ✦ POLKI COLLECTIONS &nbsp;&nbsp; ✦ FILIGREE WORK &nbsp;&nbsp; ✦ TEMPLE JEWELLERY &nbsp;&nbsp; ✦ EVERYDAY ELEGANCE &nbsp;&nbsp;</span>
+  </div>
+</div>
+<style>
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+
+<!-- ═══════════════════════════════════
+     CATEGORY NAVIGATION
+════════════════════════════════════ -->
+<div class="category-nav" id="categoryNav">
+  <div class="category-tabs" id="categoryTabs"></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PRODUCTS SECTION
+════════════════════════════════════ -->
+<section class="products-section" id="productsSection">
+  <div class="section-heading">
+    <div class="ornament-divider">
+      <div class="ornament-icon">❧</div>
+    </div>
+    <h2 id="sectionHeadingText">Our Royal Collection</h2>
+    <p>Handcrafted with devotion, worn with pride — each piece a masterpiece of Indian artistry</p>
+    <div class="ornament-divider" style="margin-top:16px;">
+      <div class="ornament-icon">❧</div>
+    </div>
+  </div>
+
+  <div class="jewel-grid" id="jewelsGrid">
+    <div class="spinner"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     ABOUT STRIP
+════════════════════════════════════ -->
+<section style="padding:80px 24px;background:linear-gradient(135deg,var(--maroon-dark),var(--maroon-deepest));border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <div class="ornament-divider"><div class="ornament-icon">✦</div></div>
+    <h2 style="font-size:clamp(1.2rem,3vw,1.8rem);margin-bottom:20px;">A Legacy of Royal Craftsmanship</h2>
+    <p style="font-size:1.1rem;font-style:italic;max-width:680px;margin:0 auto 32px;line-height:1.8;color:rgba(253,246,227,0.75);">
+      At Maa Jewellers, we carry forward the heritage of Indian goldsmithing — where every bead, every filigree wire, and every precious stone is placed with reverence and artistry. Our collection is not merely jewellery; it is wearable heritage.
+    </p>
+    <div style="display:flex;justify-content:center;gap:48px;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-family:'Cinzel Decorative',serif;font-size:2rem;color:var(--gold);">100%</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(201,168,76,0.6);text-transform:uppercase;">Hallmarked Gold</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cinzel Decorative',serif;font-size:2rem;color:var(--gold);">50+</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(201,168,76,0.6);text-transform:uppercase;">Unique Designs</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cinzel Decorative',serif;font-size:2rem;color:var(--gold);">∞</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(201,168,76,0.6);text-transform:uppercase;">Timeless Beauty</div>
+      </div>
+    </div>
+    <div class="ornament-divider" style="margin-top:36px;"><div class="ornament-icon">✦</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Maa Jewellers</div>
+  <p class="footer-tagline">Where Tradition Meets Timeless Beauty</p>
+  <div class="ornament-divider" style="max-width:400px;margin:0 auto 24px;">
+    <div class="ornament-icon">◆</div>
+  </div>
+  <div class="footer-contact">
+    <div class="footer-contact-item">📍 Station Road, Bandel, Hooghly, India</div>
+    <div class="footer-contact-item">📞 +91 90077 73402</div>
+    <div class="footer-contact-item">✉️ maajewellers@gmail.com</div>
+  </div>
+  <div class="footer-copyright">
+    © Maa Jewellers. All rights reserved. &nbsp;|&nbsp;
+    <a href="admin.html" style="color:rgba(201,168,76,0.3);font-size:0.75rem;">Owner Portal</a>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     WISHLIST PANEL
+════════════════════════════════════ -->
+<div class="wishlist-panel" id="wishlistPanel">
+  <div class="wishlist-header">
+    <h3>♥ My Wishlist</h3>
+    <button class="wishlist-close" id="closeWishlist">✕</button>
+  </div>
+  <div class="wishlist-items" id="wishlistItems"></div>
+  <div style="padding:16px 20px;border-top:1px solid rgba(201,168,76,0.15);">
+    <p style="font-size:0.8rem;font-style:italic;color:rgba(201,168,76,0.5);text-align:center;">
+      ✨ Visit us in-store to enquire about any saved piece
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     ITEM DETAIL MODAL
+════════════════════════════════════ -->
+<div class="modal-overlay" id="itemDetailModal">
+  <div class="modal-box" style="max-width:600px;">
+    <button class="modal-close" onclick="closeModal('itemDetailModal')">✕</button>
+    <div id="itemDetailContent"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SCRIPTS
+════════════════════════════════════ -->
+<script src="js/shared.js"></script>
+<script src="js/customer.js"></script>
+<script>
+  // Nav category click helper
+  function switchNavCategory(catId) {
+    const tabs = document.querySelectorAll('.category-tab');
+    tabs.forEach(t => t.classList.remove('active'));
+    const catIdx = catId === 'all' ? 0 : CATEGORIES.findIndex(c => c.id === catId) + 1;
+    if (tabs[catIdx]) tabs[catIdx].classList.add('active');
+    activeCategory = catId;
+    renderProducts(catId);
+    document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+    scrollToCollection();
+    document.getElementById('mobileNav')?.classList.remove('open');
+  }
+</script>
+</body>
+</html>

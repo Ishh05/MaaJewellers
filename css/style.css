@@ -1,0 +1,414 @@
+/* ============================================================
+   MAA JEWELLERS — Royal Indian Stylesheet
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --maroon-deepest: #2A0008;
+  --maroon-dark:    #4A0010;
+  --maroon:         #6B0F1A;
+  --maroon-mid:     #8B1A1A;
+  --maroon-light:   #A52A2A;
+  --gold-deep:      #8B6914;
+  --gold:           #C9A84C;
+  --gold-bright:    #D4AF37;
+  --gold-light:     #E8C97A;
+  --gold-pale:      #F5DEB3;
+  --cream:          #FDF6E3;
+  --cream-dark:     #F0E0B8;
+  --ivory:          #FFFFF0;
+  --text-dark:      #1A0005;
+  --text-mid:       #3D0010;
+  --shadow-gold:    rgba(201, 168, 76, 0.4);
+  --shadow-maroon:  rgba(107, 15, 26, 0.5);
+  --transition:     0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background-color: var(--maroon-deepest);
+  color: var(--cream);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--maroon-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+/* ── Typography ── */
+h1, h2, h3 {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+}
+p { line-height: 1.7; color: var(--cream-dark); }
+a { text-decoration: none; color: var(--gold); transition: color var(--transition); }
+a:hover { color: var(--gold-light); }
+
+/* ── Mughal Background Pattern ── */
+.mughal-bg {
+  background-color: var(--maroon-dark);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C9A84C' stroke-width='0.4' stroke-opacity='0.15'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Cpath d='M40 20 L46 32 L40 28 L34 32Z'/%3E%3Cpath d='M40 60 L46 48 L40 52 L34 48Z'/%3E%3Cpath d='M20 40 L32 34 L28 40 L32 46Z'/%3E%3Cpath d='M60 40 L48 34 L52 40 L48 46Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Utility ── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.text-center { text-align: center; }
+.gold-text { color: var(--gold); }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+
+/* ── Ornamental Divider ── */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.ornament-divider .ornament-icon {
+  color: var(--gold);
+  font-size: 1.4rem;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 4px var(--shadow-gold); }
+  50% { text-shadow: 0 0 14px var(--shadow-gold), 0 0 28px var(--shadow-gold); }
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.btn:hover::before { transform: translateX(0); }
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-bright), var(--gold));
+  color: var(--maroon-deepest);
+  font-weight: 700;
+  box-shadow: 0 4px 20px var(--shadow-gold);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--shadow-gold);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.btn-outline:hover {
+  background: rgba(201,168,76,0.1);
+  transform: translateY(-2px);
+}
+.btn-danger {
+  background: linear-gradient(135deg, #8B0000, #CC0000);
+  color: white;
+  font-size: 0.75rem;
+  padding: 8px 16px;
+}
+.btn-sm { padding: 8px 18px; font-size: 0.72rem; }
+.btn-icon { padding: 8px 12px; }
+
+/* ── Notification Toast ── */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.toast {
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border-left: 4px solid var(--gold);
+  background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+  color: var(--gold-light);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: slide-in 0.4s ease forwards;
+  min-width: 260px;
+}
+.toast.success { border-color: #4CAF50; color: #81C784; }
+.toast.error { border-color: #f44336; color: #EF9A9A; }
+@keyframes slide-in {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes slide-out {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(120%); opacity: 0; }
+}
+
+/* ── Forms ── */
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 2px;
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+.form-group select option { background: var(--maroon-dark); }
+.form-group textarea { resize: vertical; min-height: 90px; }
+
+/* ── Modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,0,4,0.85);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; animation: fade-in 0.3s ease; }
+.modal-box {
+  background: linear-gradient(160deg, var(--maroon-dark), var(--maroon-deepest));
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 4px;
+  padding: 40px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(201,168,76,0.2);
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+.modal-close:hover { transform: rotate(90deg); color: var(--gold-light); }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── Jewellery Card ── */
+.jewel-card {
+  background: linear-gradient(160deg, rgba(107,15,26,0.5), rgba(42,0,8,0.8));
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all var(--transition);
+  position: relative;
+  cursor: pointer;
+}
+.jewel-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(201,168,76,0.05), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: 0;
+  pointer-events: none;
+}
+.jewel-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.15);
+}
+.jewel-card:hover::before { opacity: 1; }
+.jewel-card-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  background: var(--maroon-dark);
+}
+.jewel-card:hover .jewel-card-img { transform: scale(1.05); }
+.jewel-card-img-placeholder {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+  color: var(--gold);
+  font-size: 3rem;
+  gap: 8px;
+}
+.jewel-card-img-placeholder span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(201,168,76,0.5);
+}
+.jewel-card-body {
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+.jewel-card-category {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 3px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.jewel-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+.jewel-card-desc {
+  font-size: 0.9rem;
+  color: rgba(253,246,227,0.65);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ── Grid ── */
+.jewel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+  padding: 12px 0;
+}
+
+/* ── Section Heading ── */
+.section-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-heading h2 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  margin-bottom: 12px;
+}
+.section-heading p {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(201,168,76,0.75);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── Loading Spinner ── */
+.spinner {
+  width: 48px; height: 48px;
+  border: 3px solid rgba(201,168,76,0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 40px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Empty State ── */
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: rgba(201,168,76,0.5);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-state p { font-style: italic; font-size: 1.05rem; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .jewel-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+  .modal-box { padding: 28px 20px; }
+  .btn { padding: 10px 20px; font-size: 0.75rem; }
+}
+@media (max-width: 480px) {
+  .jewel-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .jewel-card-img, .jewel-card-img-placeholder { height: 180px; }
+}
+
+/* ── Corner Decorations ── */
+.corner-decoration {
+  position: absolute;
+  width: 60px; height: 60px;
+  opacity: 0.3;
+}
+.corner-decoration.tl { top: 0; left: 0; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-decoration.tr { top: 0; right: 0; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.corner-decoration.bl { bottom: 0; left: 0; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-decoration.br { bottom: 0; right: 0; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }

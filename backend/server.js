@@ -22,7 +22,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   'http://localhost:5000',
-  process.env.FRONTEND_URL, // production frontend URL from .env
+  'https://maajewellers.onrender.com',
+  process.env.FRONTEND_URL,
 ].filter(Boolean);
 
 app.use(cors({

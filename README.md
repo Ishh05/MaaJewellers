@@ -2,14 +2,6 @@
 
 A luxury jewellery catalogue website with an elegant Indian royal aesthetic featuring deep maroon and royal gold color palette.
 ---
-
-## Admin Login Credentials
-
-- **URL:** `yoursite.com/admin.html`
-- **Username:** `admin` 
-- **Password:** `2024`
-
-
 ## Features
 
 ### Customer View (`index.html`)
